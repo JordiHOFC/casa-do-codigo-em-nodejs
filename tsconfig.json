@@ -1,0 +1,35 @@
+{
+   "buildOnSave": false,
+   "compileOnSave": false,
+   "compilerOptions": {
+     "module": "commonjs",
+     "target": "es2017",
+     "lib": [
+       "es2018",
+       "dom",
+       "es2021",
+     ],
+     "experimentalDecorators": true,
+     "emitDecoratorMetadata": true,
+     "noImplicitAny": true,
+     "removeComments": true,
+     "strictNullChecks": true,
+     "noImplicitThis": true,
+     "alwaysStrict": true,
+     "preserveConstEnums": true,
+     "sourceMap": true,
+     "esModuleInterop": true,
+     "outDir": "build",
+     "noImplicitReturns": true,
+     "strict": true,
+     "strictPropertyInitialization": false,
+     "forceConsistentCasingInFileNames": true
+   },
+   "typeRoots": [
+     "node_modules/@types"
+   ],
+   "exclude": [
+     "./tests/",
+     "node_modules",
+   ]
+ }

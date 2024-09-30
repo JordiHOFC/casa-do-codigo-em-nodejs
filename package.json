@@ -1,0 +1,34 @@
+{
+   "name": "Casa do Codigo",
+   "version": "0.0.1",
+   "description": "Projeto de estudo de nodejs com typescript",
+   "devDependencies": {
+      "@types/express": "^4.17.21",
+      "@types/express-actuator": "^1.8.3",
+      "@types/node": "^22.1.0",
+      "mocha": "^10.7.3",
+      "supertest": "^7.0.0",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.3.3"
+   },
+   "dependencies": {
+      "@testcontainers/postgresql": "^10.13.1",
+      "@types/mocha": "^10.0.8",
+      "@types/supertest": "^6.0.2",
+      "@types/node": "^22.9.0",
+      "body-parser": "^1.20.2",
+      "express": "^4.18.2",
+      "express-actuator": "^1.8.4",
+      "express-validator": "^7.2.0",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.13",
+      "typeorm": "0.3.20",
+      "winston": "^3.11.0"
+   },
+   "scripts": {
+      "build": "tsc",
+      "start": "ts-node -r dotenv/config src/server.ts",
+      "test": "mocha -r ts-node/register test/**/*.test.ts"
+
+   }
+}
