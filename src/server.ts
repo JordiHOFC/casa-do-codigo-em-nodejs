@@ -1,12 +1,11 @@
 import {AppDataSourceConnection} from "./configuration/DatabaseConnection"
-import {properties} from "./configuration/ApplicationPropertiesConfig";
 import {Server} from "http";
 import { AppServer } from "./index";
 
 const dotenv = require('dotenv');
 dotenv.config()
 
-const serverPort = properties.SERVER_PORT || 3009
+const serverPort = process.env.SERVER_PORT || 3009
 let httpServer: Server;
 
 

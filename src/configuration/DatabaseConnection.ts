@@ -1,21 +1,26 @@
 import "reflect-metadata"
-import { DataSource } from "typeorm"
-import { Autor } from "../model/Autor"
-import {properties} from "./ApplicationPropertiesConfig";
+import {DataSource, DataSourceOptions} from "typeorm"
+import {Autor} from "../model/Autor"
+import {Categoria} from "../model/Categoria";
 
-export const AppDataSourceConnection = new DataSource({
+const options: DataSourceOptions = {
     type: "postgres",
-    host: properties.POSTGRES_HOST,
-    port: properties.POSTGRES_PORT,
-    username: properties.POSTGRES_USER,
-    password: properties.POSTGRES_PASSWORD,
-    database: properties.POSTGRES_DB,
+    host: process.env.POSTGRES_HOST,
+    port: parseInt(process.env.POSTGRES_PORT || '5432'),
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
     synchronize: true,
     logging: true,
-    entities: [Autor],
+    entities: [
+        Autor,
+        Categoria
+    ],
     migrations: [],
     subscribers: [],
-})
+};
+
+export  const AppDataSourceConnection = new DataSource(options)
 
 
 

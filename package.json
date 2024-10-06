@@ -14,9 +14,10 @@
    "dependencies": {
       "@testcontainers/postgresql": "^10.13.1",
       "@types/mocha": "^10.0.8",
-      "@types/supertest": "^6.0.2",
       "@types/node": "^22.9.0",
+      "@types/supertest": "^6.0.2",
       "body-parser": "^1.20.2",
+      "cross-env": "^7.0.3",
       "express": "^4.18.2",
       "express-actuator": "^1.8.4",
       "express-validator": "^7.2.0",
@@ -28,7 +29,6 @@
    "scripts": {
       "build": "tsc",
       "start": "ts-node -r dotenv/config src/server.ts",
-      "test": "mocha -r ts-node/register test/**/*.test.ts"
-
+      "test": "mocha -r dotenv/config -r ts-node/register test/**/*.test.ts"
    }
 }

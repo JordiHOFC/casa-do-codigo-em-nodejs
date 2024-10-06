@@ -4,8 +4,9 @@ import {Autor} from "../model/Autor";
 import {AppDataSourceConnection} from "../configuration/DatabaseConnection";
 import {validationResult} from "express-validator";
 import LoggerInstance from "../configuration/LoggerConfiguration";
+import {Categoria} from "../model/Categoria";
 
-class NovoAutorController {
+class NovaCategoriaController {
     private entityManager: EntityManager
     private appDataSourceConnection
 
@@ -16,36 +17,36 @@ class NovoAutorController {
     }
 
     async cadastrar(req: Request, res: Response) {
-        LoggerInstance.info('Starting NovoAutorController')
+        LoggerInstance.info('Starting NovaCategoriaController')
 
         const validationErros = validationResult(req)
 
         if (!validationErros.isEmpty()) {
-            LoggerInstance.info('Finishing NovoAutorController')
+            LoggerInstance.info('Finishing NovaCategoriaController')
             return res.status(400).json({errors: validationErros.array()})
         }
         const payload = req.body
 
         this.appDataSourceConnection.initialize().then(async ()=>{
             await this.entityManager.transaction(async (tx) => {
-                let repository = tx.getRepository(Autor);
+                let repository = tx.getRepository(Categoria);
 
-                const existeCadastroComEmail = await repository.existsBy({
-                    email: payload.email
+                const existeCadastroComNome = await repository.existsBy({
+                    nome: payload.nome
                 });
 
-                if (existeCadastroComEmail) {
-                    LoggerInstance.info('Finishing NovoAutorController')
-                    res.status(422).json({message: "Já existe cadastro de Autor com esse email"})
+                if (existeCadastroComNome) {
+                    LoggerInstance.info('Finishing NovaCategoriaController')
+                    res.status(422).json({message: "Já existe cadastro de Categoria com este nome"})
                     return
                 }
 
-                var autor = new Autor(payload.nome, payload.email, payload.descricao);
-                await repository.save(autor)
+                var categoria = new Categoria(payload.nome);
+                await repository.save(categoria)
                 res.status(201);
                 return
             })
-            LoggerInstance.info('Finishing NovoAutorController')
+            LoggerInstance.info('Finishing NovaCategoriaController')
             return
         })
 
@@ -53,4 +54,4 @@ class NovoAutorController {
     }
 }
 
-export default NovoAutorController;
+export default NovaCategoriaController;
